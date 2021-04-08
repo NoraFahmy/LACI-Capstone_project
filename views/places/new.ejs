@@ -1,0 +1,41 @@
+<% layout("./layouts/boilerplate") %>
+<!-- <div>
+    <a href="/places">Go back to all the Places</a>
+</div> -->
+<h1 class="text-center">Add A New City</h1>
+<div class="col-6 offset-3">
+    <!-- This enctype attribute let's us upload files with the input type of file -->
+    <form class="needs-validation" action="/places" method="POST" novalidate enctype="multipart/form-data">
+        <div class="mb-3">
+            <label class="form-label" for="name">City</label>
+            <input class="form-control" type="text" id="name" name="place[name]" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="country">Country</label>
+            <input class="form-control"  type="text" id="country" name="place[country]" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="description">Description</label>
+            <input class="form-control"  type="text" id="description" name="place[description]" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="price">Price</label>
+            <select class="form-select" name="place[price]" id="price">
+                <option value="$">$</option>
+                <option value="$$">$$</option>
+                <option value="$$$">$$$</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="company">Company</label>
+            <input class="form-control" type="text" id="company" name="place[company]" required>
+        </div>
+        <div class="mb-3">
+            <label for="formFile" class="form-label"> Images</label>
+            <input class="form-control" type="file" id="formFile" name="images" multiple>
+        </div>
+        <div class="mb-3">
+            <button class="btn btn-dark btn-lg ">Submit</button>
+        </div>
+    </form>
+</div>

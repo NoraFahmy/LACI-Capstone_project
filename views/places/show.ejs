@@ -1,0 +1,71 @@
+<% layout("./layouts/boilerplate") %>
+<div class="mt-4 md:flex items-center"></div>
+    <div class="md:w-1/2 pr-4">
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner carousel">
+                <% for(let [index, image] of place.images.entries()) { %>
+                    <div class="carousel-item <%= index === 0 && " active" %> ">
+                        <img class="w-full rounded-lg carousel-image" src="<%= image.url %> " class="d-block w-100 active" alt="city image">
+                    </div>
+                    <% } %>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+
+    <p><%= place.price %></p>
+    <p><%=place.company%></p>
+    <h1>
+        <%=place.name%>, 
+        <%=place.country%>
+    </h1>
+
+    <h4>
+        <%=place.description%>
+    </h4>
+    <div>
+        <a href="/places/<%=place.id%>/edit">Edit <%= place.name%></a>
+    </div>
+    <form action="/places/<%=place.id%>/delete?_method=DELETE" method="POST">
+        <button class="btn btn-dark btn-lg ">Delete Place</button>
+    </form>
+</div>
+<!-- review form -->
+<h2>Leave a Review</h2>
+<form class="needs-validation" action="/places/<%= place.id %>/reviews" method="POST" novalidate>
+    <div>
+        <label class="form-label" for="rating">Rating</label>
+        <input class="form-range" name="review[rating]" type="range" min="0" max="5" step="1" required>
+    </div>
+    <div>
+        <label class="form-label" for="body">Review</label>
+        <textarea class="form-control" name="review[body]" id="body" cols="30" rows="5" required></textarea>
+    </div>
+    <button class="btn btn-dark btn-lg ">Submit</button>
+</form>
+<div>
+    <h3>Reviews</h3>
+    <% for (let reviews of place.reviews) {%>
+        <div>
+            <p>Rating: <%=reviews.rating%>
+            </p>
+            <p>Reviews: <%=reviews.body%>
+            </p>
+            <form action="/places/<%=place.id%>/reviews/<%=reviews.id%>?_method=delete" method="POST">
+                <button class="btn btn-dark btn-lg ">Delete</button>
+            </form>
+
+        </div>
+        <%}%>
+</div>
+
+
+
+

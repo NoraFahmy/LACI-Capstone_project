@@ -1,0 +1,70 @@
+a {
+  text-decoration: none;
+  color: white;
+}
+h1,
+h2,
+h3 {
+  font-weight: 900;
+  font-family: "Montserrat", sans-serif;
+  color: white;
+}
+
+/* navigation bar */
+.container-fluid {
+  padding: 1%;
+}
+
+.navbar {
+  padding: 0 0 4.5rem;
+  color: white;
+}
+.navbar-brand {
+  font-family: "Ubuntu", sans-serif;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+.nav-item {
+  padding: 0 18px;
+}
+.nav-link {
+  font-size: 1.2rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+}
+
+.header {
+  background-color: gray;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+/*home styles*/
+.green-home {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("https://www.terracastproducts.com/wp-content/uploads/2016/12/Eco-Friendly-Landscaping-Materials-Tips-For-Landscape-Designers.png");
+  object-fit: cover;
+  background-repeat: no-repeat;
+  object-position: center;
+  height: 80vh;
+  width: 100%;
+}
+
+/* index styles */
+.city-col {
+  margin-bottom: 20px;
+}
+.card-img-top {
+  height: 400px;
+}
+
+/* carsoul styles-show.ejs*/
+.carousel-image {
+  width: 500px;
+  height: 500px;
+}
+.carousel {
+  width: 500px;
+  height: 500px;
+}

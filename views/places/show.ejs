@@ -1,9 +1,9 @@
 <% layout("./layouts/boilerplate") %>
-<div class="mt-4 md:flex items-center"></div>
-    <div class="md:w-1/2 pr-4">
+<div class="mt-4 md:flex items-center text-left px-12">
+    <div>
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner carousel">
-                <% for(let [index, image] of place.images.entries()) { %>
+                <% for(let [index, image] of place.image.entries()) { %>
                     <div class="carousel-item <%= index === 0 && " active" %> ">
                         <img class="w-full rounded-lg carousel-image" src="<%= image.url %> " class="d-block w-100 active" alt="city image">
                     </div>
@@ -19,53 +19,60 @@
             </button>
         </div>
     </div>
-
-    <p><%= place.price %></p>
-    <p><%=place.company%></p>
-    <h1>
-        <%=place.name%>, 
-        <%=place.country%>
-    </h1>
-
-    <h4>
-        <%=place.description%>
-    </h4>
-    <div>
-        <a href="/places/<%=place.id%>/edit">Edit <%= place.name%></a>
-    </div>
-    <form action="/places/<%=place.id%>/delete?_method=DELETE" method="POST">
-        <button class="btn btn-dark btn-lg ">Delete Place</button>
-    </form>
-</div>
-<!-- review form -->
-<h2>Leave a Review</h2>
-<form class="needs-validation" action="/places/<%= place.id %>/reviews" method="POST" novalidate>
-    <div>
-        <label class="form-label" for="rating">Rating</label>
-        <input class="form-range" name="review[rating]" type="range" min="0" max="5" step="1" required>
-    </div>
-    <div>
-        <label class="form-label" for="body">Review</label>
-        <textarea class="form-control" name="review[body]" id="body" cols="30" rows="5" required></textarea>
-    </div>
-    <button class="btn btn-dark btn-lg ">Submit</button>
-</form>
-<div>
-    <h3>Reviews</h3>
-    <% for (let reviews of place.reviews) {%>
-        <div>
-            <p>Rating: <%=reviews.rating%>
-            </p>
-            <p>Reviews: <%=reviews.body%>
-            </p>
-            <form action="/places/<%=place.id%>/reviews/<%=reviews.id%>?_method=delete" method="POST">
-                <button class="btn btn-dark btn-lg ">Delete</button>
-            </form>
-
+    <div class="px-10">
+        <div class="mb-3">
+            <h1 class="leading-relaxed"><%=place.name%>, <%=place.country%></h1>
         </div>
-        <%}%>
+        <div class="mb-3">
+            <h4 class="leading-relaxed "><%=place.description%></h4>
+        </div>
+        <div class="mb-3">
+            <p>Submitted By: <%= place.submittedBy.username %></p>
+        </div>
+        <div class="mb-3">
+            <% if(user && place.submittedBy.equals(user)) { %>
+                    <a class="btn btn-light btn-lg mb-3 no-underline text-dark" href="/places/<%=place.id%>/edit">Edit Place</a>
+            
+                    <form action="/places/<%=place.id%>/delete?_method=DELETE" method="POST">
+                        <button class="btn btn-dark btn-lg ">Delete Place</button>
+                    </form>
+            <% } %>
+        </div>
+    </div>
 </div>
+<div class="mt-4 items-center text-left px-12">
+    <!-- review form -->
+    <% if(user){ %> 
+        <h2 class="mb-3">Leave a Review</h2>
+        <form class="needs-validation" action="/places/<%= place.id %>/reviews" method="POST" novalidate>
+            <div>
+                <label class="form-label mb-3" for="rating">Rating</label>
+                <input class="form-range mb-3" name="review[rating]" type="range" min="0" max="5" step="1" required>
+            </div>
+            <div>
+                <label class="form-label mb-3" for="body">Reviews</label>
+                <textarea class="form-control mb-3" name="review[body]" id="body" cols="30" rows="5" required></textarea>
+            </div>
+            <button class="btn btn-dark btn-lg mb-3">Submit</button>
+        </form>
+    <% } %> 
+    <div>
+        <h3 class="mb-3">Reviews</h3>
+        <% for (let reviews of place.reviews) {%>
+            <div>
+                <p>Rating: <%=reviews.rating%>
+                </p>
+                <p>Author: <%= reviews.author.username %>
+                </p>
+                <p>Reviews: <%=reviews.body%>
+                </p>
+                <% if(user && reviews.author.equals(user) ) { %>
+                    <form action="/places/<%=place.id%>/reviews/<%=reviews.id%>?_method=delete" method="POST">
+                        <button class="btn btn-dark btn-lg ">Delete</button>
+                    </form>
+                <% } %>     
 
-
-
-
+            </div>
+            <%}%>
+    </div>
+</div>

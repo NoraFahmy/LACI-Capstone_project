@@ -1,17 +1,19 @@
 <% layout("./layouts/boilerplate") %>
-<h1>Register</h1>
-<form action="/register" class="needs-validation" method="POST" novalidate>
-    <div class="mb-3">
-        <label class="form-label" for="username">Username</label>
-        <input class="form-control" type="text" id="username" name="username" required>
-    </div>
-    <div class="mb-3">
-        <label class="form-label" for="email">Email</label>
-        <input class="form-control" type="email" id="email" name="email" required>
-    </div>
-    <div class="mb-3">
-        <label class="form-label" for="password">Password</label>
-        <input class="form-control" type="password" id="password" name="password" required>
-    </div>
-    <button>Register</button>
-</form>
+<div class="login-form max-w-md mx-auto">
+    <h1 class="text-3xl text-center my-12">Register</h1>
+    <form action="/register" class="needs-validation" method="POST" novalidate>
+        <div class="mb-3">
+            <label class="form-label text-black-50" for="username">Username</label>
+            <input class="form-control py-3 px-4" type="text" id="username" name="username" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label  text-black-50" for="email">Email</label>
+            <input class="form-control py-3 px-4" type="email" id="email" name="email" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label text-black-50 " for="password">Password</label>
+            <input class="form-control py-3 px-4" type="password" id="password" name="password" required>
+        </div>
+        <button class="btn btn-dark  btn-lg inline-block  w-full transition duration-500 ease-out-in bg-black-600 hover:bg-green-600 transform hover:-translate-y-1 hover:scale-90 py-3 px-6 my-12">Register</button>
+    </form>
+</div>

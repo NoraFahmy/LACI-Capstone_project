@@ -1,21 +1,22 @@
 <% layout("./layouts/boilerplate") %>
-<h1 class="text-center">Edit <%=place.name%></h1>
-<div class="col-6 offset-3">
-    <form class="needs-validation"  action="/places/<%=place.id%>/?_method=PUT" method="POST" novalidate>
+
+<h1 class="text-center text-3xl">Edit <%=place.name%></h1>
+<div class="login-form col-6 offset-3 mt-4  text-left  px-12">
+    <form class="needs-validation"  action="/places/<%=place.id%>/?_method=PUT" method="POST" novalidate enctype="multipart/form-data">
         <div class="mb-3">
-            <label class="form-label" for="name">PlaceName</label>
+            <label class="form-label text-black-50" for="name">City</label>
             <input class="form-control" type="text" id="name" name="place[name]" value="<%=place.name%>" required>
         </div>
         <div class="mb-3">
-            <label class="form-label" for="country">Country</label>
+            <label class="form-label text-black-50" for="country">Country</label>
             <input class="form-control" type="text" id="country" name="place[country]" value="<%=place.country%>" required>
         </div>
         <div class="mb-3">
-            <label class="form-label" for="description">Description</label>
+            <label class="form-label text-black-50" for="description">Description</label>
             <input class="form-control" type="text" id="description" name="place[description]" value="<%=place.description%>" required>
         </div>
-        <div class="mb-3">
-            <label class="form-label" for="price">Price</label>
+        <!-- <div class="mb-3">
+            <label class="form-label text-black-50" for="price">Price</label>
             <select class="form-select" name="place[price]" id="price" value="<%=place.price%>">
                 <option value="$">$</option>
                 <option value="$$">$$</option>
@@ -23,15 +24,32 @@
             </select>
         </div>
         <div class="mb-3">
-            <label class="form-label" for="company">Company</label>
+            <label class="form-label text-black-50" for="company">Company</label>
             <input class="form-control" type="text" id="company" name="place[company]" value="<%=place.company%>" required>
+        </div> -->
+        <div class="mb-3">
+            <label for="formFile" class="form-label text-black-50">Add Images</label>
+            <input class="form-control" type="file" id="formFile" name="image" multiple>
         </div>
         <div class="mb-3">
-            <label for="formFile" class="form-label">Images</label>
-            <input class="form-control" type="file" id="formFile" name="images" multiple>
+            <label for="formFile" class="form-label text-black-50">Delete Images</label>
+            <!-- We are using a foreach to loop over all of our images and displaying them with a html tag and checkbox. We
+            associate the checkbox value with our image filenames -->
+            <div class="text-center" >
+                <% place.image.forEach(function(img, i) { %>
+                    <p>
+                        <label for="image<%=i%>">
+                        <input type="checkbox" name="selectedImages[]" id="image<%=i%>" value="<%=img.filename%>">
+                        <span class="fancy-checkbox fancy-checkbox-img"></span>
+                        <img src="<%= img.url%>" class="img-thumbnail edit-img" alt="" id="image<%=i%>">
+                        </label>
+                    </p>
+                    <% }) %>
+                <div class="mb-3">
+                    <button class="btn btn-dark  btn-lg transition duration-500 ease-out-in bg-black-600 hover:bg-green-600 transform hover:-translate-y-1 hover:scale-90 py-3 px-6 my-12">Submit</button>
+                </div>
+            </div>
         </div>
-        <div class="mb-3">
-            <button class="btn btn-dark btn-lg ">Submit</button>
-        </div>
+        
     </form>
 </div>

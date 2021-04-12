@@ -5,26 +5,17 @@ const {reviewSchema}=require('../joiSchema');
 const AppError=require("../utilites/AppError");
 const Place=require("../models/place");
 const Review=require("../models/review");
+const {validateReview, isAuthenticated, isReviewCreator}=require('../middlewear/middleware');
 
-
-/*--------------MiddleWare--------------*/
-const validateReview = (req, res, next) => {
-	const { error } = reviewSchema.validate(req.body);
-	if (error) {
-		const msg = error.details.map((e) => e.message).join(',');
-		throw new AppError(msg, 400);
-	} else {
-		next();
-	}
-};
 
 /*--------------Review routes--------------*/
 
 // creat a new review | EJS: show
-router.post('/', validateReview,asyncCatcher(async (req,res)=>{
+router.post('/', isAuthenticated,validateReview,asyncCatcher(async (req,res)=>{
 	const {id}=req.params;
 	const place=await Place.findById(id);
 	const review=new Review(req.body.review);
+	review.author=req.user._id;
 	place.reviews.push(review);
 	await place.save();
 	await review.save();
@@ -36,6 +27,8 @@ router.post('/', validateReview,asyncCatcher(async (req,res)=>{
 // delete a review 
 router.delete(
 	'/:reviewId',
+	isAuthenticated,
+	isReviewCreator,
 	asyncCatcher(async (req, res) => {
 		const { id, reviewId } = req.params;
 		await Place.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });

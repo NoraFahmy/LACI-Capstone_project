@@ -5,8 +5,8 @@ module.exports.placeSchema=Joi.object({
         name: Joi.string().required(),
         country: Joi.string().required(),
         description: Joi.string().required(), 
-        price: Joi.string().required(),
-        company: Joi.string().required(),
+        // price: Joi.string().required(),
+        // company: Joi.string().required(),
     }),	
     selectedImages: Joi.array(),	
 });

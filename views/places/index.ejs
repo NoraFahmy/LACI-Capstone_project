@@ -1,17 +1,17 @@
 <% layout("./layouts/boilerplate") %> 
-<h1>Green Destinations</h1>
-
-<section class="white-section" id="city">
+<h1 class="text-center text-3xl mb-4 px-12">Green Cities</h1>
+<section class="white-section px-12" id="city">
     <div class="row ">
         <%places.forEach(place=> {%>
             <div class="city-col col-lg-4 col-md-6">
                 <div class="card">
-                    <img class="card-img-top" src="<%=place.images[0].url%>" alt="image cap">
+                    <img class="card-img-top" src="<%=place.image[0].url%>" alt="image cap">
                     <div class="card-body">
-                        <h5 class="card-title">
+                        <h5 class="card-title text-black-50 text-center">
                             <%=place.name%>, <%=place.country%>
                         </h5>
-                        <a href="places/<%=place._id%>" class="btn btn-lg btn-block btn-dark">See More</a>
+                        <a href="places/<%=place._id%>" class="btn btn-dark btn-lg w-full inline-block transition duration-500 pulse bg-black-600 hover:bg-green-600 transform hover:-translate-y-1
+                        hover:scale-100">See More</a>
                     </div>
                 </div>
             </div>

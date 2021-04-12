@@ -1,40 +1,37 @@
-<div class="container-fluid"></div>
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <a class="navbar-brand" href="#">Green City</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo2"
-            aria-controls="navbarTogglerDemo2" aria-expanded="false" aria-label="Toggle navigation">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-transparent px-12 my-2">
+    <div class="container">
+        <a class="navbar-brand" href="/">Green City</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo2">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item ">
-                    <a class="nav-link" href="/">Home</a>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <div class="navbar-nav">
+                <li class="nav-item px-6">
+                    <a class="nav-link" aria-current="page" href="/places">Discover</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/places">Discover</a>
-                </li>
-                <li class="nav-item">
+                <li class="nav-item px-6">
                     <a class="nav-link" href="/places/new">New</a>
                 </li>
-            </ul>
-            <ul class="navbar-nav ml-auto">
-                <% if(!user) {%> 
-                    <li class="nav-item ">
-                        <a class="nav-link" href="/login">Login</a>
+            </div>
+            <div class="navbar-nav ml-auto">
+                <% if(!user) { %>
+                    <li class="nav-item px-6">
+                        <a class="nav-link" aria-current="page" href="/login">Login</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item px-6">
                         <a class="nav-link" href="/register">Register</a>
                     </li>
-                <% }else{ %> 
-                    <li class="nav-item">
-                        <a class="nav-link">Welcome, <%= user.username %> </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/logout">Logout</a>
-                    </li>
-                <% } %> 
-            </ul>
+                    <% } else { %>
+                        <li class="nav-item px-6">
+                            <a class="nav-link">Welcome, <%= user.username %> </a>
+                        </li>
+                        <li class="nav-item px-6">
+                            <a class="nav-link" href="/logout">Logout</a>
+                        </li>
+                        <% } %>
+            </div>
         </div>
-    </nav>
-</div>
+    </div>
+</nav>

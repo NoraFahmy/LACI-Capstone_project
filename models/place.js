@@ -5,13 +5,18 @@ const Schema=mongoose.Schema;
 
 const PlaceSchema=new Schema({
     name: String,
-    images: [{
-        url: String
+    image: [{
+        url: String,
+        filename: String
     }],
     country: String,
     description: String ,
-    price: String,
-    company: String,
+    // price: String,
+    // company: String,
+    submittedBy: {
+		type: Schema.Types.ObjectId,
+		ref: "User"
+	},
     reviews: [{
         type: Schema.Types.ObjectId,
         ref: 'Review'

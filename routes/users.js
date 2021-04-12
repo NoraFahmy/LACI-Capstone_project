@@ -23,6 +23,7 @@ router.post(
 			});
 		} catch (e) {
 			req.flash('error', e.message);
+			res.redirect('/register');
 		}
 	})
 );

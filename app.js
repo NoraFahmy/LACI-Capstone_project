@@ -21,6 +21,9 @@ const passport=require('passport');
 const PassportLocal=require('passport-local');
 const User=require('./models/user');
 
+const MongoStore = require('connect-mongo');
+
+//process.env.DB_STRING
 //Mongoose Connecting to MongoDB
 mongoose
 	.connect('mongodb://localhost:27017/placesDB', {
@@ -49,8 +52,22 @@ app.use(methodOverride("_method"));
 app.use(express.static('public'));
 app.use(express.static(path.join(__dirname, '/public')));
 
+const store = MongoStore.create({
+	mongoUrl: process.env.DB_STRING,
+	touchAfter: 24 * 60 * 60,
+	crypto: {
+		secret: 'drake',
+	},
+});
+
+// This checks for any errors that may occur.
+store.on('error', (e) => {
+	console.log('Store Error', e);
+});
+
 
 const sessionConfig = {
+	store,
 	secret: 'drake',
 	resave: false,
 	saveUninitialized: true,

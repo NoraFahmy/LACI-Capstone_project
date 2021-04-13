@@ -24,10 +24,10 @@
             <h1 class="leading-relaxed"><%=place.name%>, <%=place.country%></h1>
         </div>
         <div class="mb-3">
-            <h4 class="leading-relaxed "><%=place.description%></h4>
+            <h4 class="leading-relaxed "><strong><%=place.description%></strong></h4>
         </div>
         <div class="mb-3">
-            <p>Submitted By: <%= place.submittedBy.username %></p>
+            <p><strong>Submitted By: </strong><%= place.submittedBy.username %></p>
         </div>
         <div class="mb-3">
             <% if(user && place.submittedBy.equals(user)) { %>
@@ -46,11 +46,11 @@
         <h2 class="mb-3">Leave a Review</h2>
         <form class="needs-validation" action="/places/<%= place.id %>/reviews" method="POST" novalidate>
             <div>
-                <label class="form-label mb-3" for="rating">Rating</label>
+                <label class="form-label mb-3" for="rating"><strong>Rating</strong></label>
                 <input class="form-range mb-3" name="review[rating]" type="range" min="0" max="5" step="1" required>
             </div>
             <div>
-                <label class="form-label mb-3" for="body">Reviews</label>
+                <label class="form-label mb-3" for="body"><strong>Reviews</strong></label>
                 <textarea class="form-control mb-3" name="review[body]" id="body" cols="30" rows="5" required></textarea>
             </div>
             <button class="btn btn-dark btn-lg mb-3">Submit</button>

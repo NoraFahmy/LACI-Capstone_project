@@ -65,7 +65,9 @@ h3 {
   height: 400px;
 }
 
-/* carsoul styles-show.ejs*/
+/* show.ejs*/
+
+/* carsoul styles */
 .carousel-image {
   width: 500px;
   height: 500px;
@@ -74,6 +76,14 @@ h3 {
   width: 500px;
   height: 500px;
 }
+/* range */
+input[type="range"]::-webkit-slider-thumb {
+  pointer-events: all;
+  width: 24px;
+  height: 24px;
+  -webkit-appearance: none;
+}
+
 /*login page*/
 
 .login-form label {

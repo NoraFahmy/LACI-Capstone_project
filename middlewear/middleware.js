@@ -1,4 +1,4 @@
-const AppError=require('../utilites/appError');
+const AppError=require('../utilites/AppError');
 const Place=require('../models/place');
 const Review=require('../models/review');
 const{placeSchema, reviewSchema}=require("../joiSchema");

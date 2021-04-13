@@ -58,11 +58,11 @@ h3 {
 
 /* index styles */
 
-.city-col {
+/* .city-col {
   margin-bottom: 20px;
-}
+} */
 .card-img-top {
-  height: 400px;
+  height: 300px;
 }
 
 /* show.ejs*/

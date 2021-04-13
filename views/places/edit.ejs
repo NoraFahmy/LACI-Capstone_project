@@ -1,7 +1,7 @@
 <% layout("./layouts/boilerplate") %>
 
 <h1 class="text-center text-3xl">Edit <%=place.name%></h1>
-<div class="login-form col-6 offset-3 mt-4  text-left  px-12">
+<div class="login-form col-6 offset-3 mt-4  text-left  px-12 max-w-md mx-auto">
     <form class="needs-validation"  action="/places/<%=place.id%>/?_method=PUT" method="POST" novalidate enctype="multipart/form-data">
         <div class="mb-3">
             <label class="form-label text-black-50" for="name">City</label>

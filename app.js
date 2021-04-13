@@ -23,10 +23,11 @@ const User=require('./models/user');
 
 const MongoStore = require('connect-mongo');
 
-//process.env.DB_STRING
+const url = process.env.DB_STRING || 'mongodb://localhost:27017/placesDB'
+
 //Mongoose Connecting to MongoDB
 mongoose
-	.connect('mongodb://localhost:27017/placesDB', {
+	.connect(url, {
 		useNewUrlParser: true,
 		useCreateIndex: true,
 		useUnifiedTopology: true,
@@ -52,11 +53,12 @@ app.use(methodOverride("_method"));
 app.use(express.static('public'));
 app.use(express.static(path.join(__dirname, '/public')));
 
+const secret = process.env.SECRET || 'drake';
 const store = MongoStore.create({
-	mongoUrl: process.env.DB_STRING,
+	mongoUrl: url,
 	touchAfter: 24 * 60 * 60,
 	crypto: {
-		secret: 'drake',
+		secret: secret,
 	},
 });
 
@@ -68,7 +70,7 @@ store.on('error', (e) => {
 
 const sessionConfig = {
 	store,
-	secret: 'drake',
+	secret,
 	resave: false,
 	saveUninitialized: true,
 	cookie: {

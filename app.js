@@ -4,12 +4,11 @@ if (process.env.NODE_ENV !== 'production') {
 
 const express=require('express');
 const app=express();
-const mongoose=require('mongoose');
 const path=require('path');
+const mongoose=require('mongoose');
 const methodOverride=require('method-override');
 const ejsMate=require("ejs-mate");
-const AppError=require("./utilites/AppError");
-
+const AppError=require("./utilities/AppError");
 const placeRoutes=require("./routes/places");
 const reviewRoutes=require("./routes/reviews");
 const authRoutes=require('./routes/users');

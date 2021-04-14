@@ -1,8 +1,8 @@
 const express=require('express');
 const router=express.Router();
-const asyncCatcher=require("../utilites/asyncCatcher");
-const {placeSchema}=require('../joiSchema'); 
-// const AppError=require("../utilites/AppError");
+const asyncCatcher=require("../utilities/asyncCatcher");
+const {placeSchema}=require('../joiSchema');
+const AppError=require("../utilities/AppError");
 const Place=require("../models/place");
 const multer = require("multer");
 const { storage } = require('../cloudinary/index');
@@ -13,7 +13,7 @@ const {isAuthenticated,isCreator,validatePlace}=require('../middlewear/middlewar
 
 // Route: /places
 // Method: GET
-// Desc: Render all places 
+// Desc: Render all places
 // Render: index.ejs
 // Permissions: Public
 
@@ -111,7 +111,7 @@ router.put("/:id",upload.array("image"),isAuthenticated,isCreator, validatePlace
 
 }));
 
-//delete a place 
+//delete a place
 router.delete("/:id/delete",isAuthenticated,isCreator,asyncCatcher(async(req,res)=>{
 	const {id}=req.params;
 	await Place.findByIdAndDelete(id);

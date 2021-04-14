@@ -1,7 +1,7 @@
 const express=require('express');
 const router=express.Router();
 const User=require("../models/user");
-const asyncCatcher = require('../utilites/asyncCatcher');
+const asyncCatcher = require('../utilities/asyncCatcher');
 const passport=require("passport")
 
 
